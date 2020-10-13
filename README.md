@@ -1,5 +1,5 @@
 # Comp-Org-Ex1-Tools
-A suite of tools to help myself and other students handle the numerical calculations, numerical representations, and MIPS assembly language coding, in preparation for our exam 1. 
+A suite of tools to help myself and other students handle the numerical calculations, numerical representations, and MIPS RISC assembly language coding, in preparation for our exam 1. 
 
 To build the executable, simply download the source code files and run the make utility in the directory that contains the file dependencies. 
 
