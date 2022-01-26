@@ -97,6 +97,20 @@ void CPU_Time::showUnits()
     cout << '\n';
 }
 
+// this needs to be called on a number of form "14250.0000"
+// i.e., don't call this on "73420000"... it will screw up your number
+std::string stripTrailingZeros(double num) {
+    std::string x = std::to_string(num);
+    while (true) {
+        if (x[x.length() - 1] == '0')
+            x.pop_back();
+        else if (x[x.length() - 1] == '.') { // to remove a lone decimal point
+            x.pop_back();
+            return x;
+        } else return x; // if called on the right number format, this will never be reached.
+    }
+}
+
 void MFLOPSrating() {
     uint64_t instCount = 0;
     float secs = 0;
@@ -118,7 +132,7 @@ void MFLOPSrating() {
     
     double denom = secs * pow(10, 6);
     
-    cout << std::fixed << std::setprecision(0);
+    cout << std::fixed;
     
     if ( !(denom > 0) ) {
         cout << "Divide by zero error.\n";
@@ -137,11 +151,11 @@ void MFLOPSrating() {
         cout << "           Execution Time * 10^6  \n\n";
         
         if (percentage < 100) // if percentage is 100, this calculation doesn't need to be shown
-            cout << "Floating Point Operations = " << instCount << " * " << percentage << "% = " << flops << "\n\n";
+            cout << "Floating Point Operations = " << instCount << " * " << stripTrailingZeros(percentage) << "% = " << flops << "\n\n";
         
         cout << "          " << flops << "       " << flops << '\n';
-        cout << "MFLOPS = " << dashes << "  =  " << dashes << "  =  " << output << '\n';
-        cout << "          " << secs << " * 10^6       " << denom << '\n';
+        cout << "MFLOPS = "  << dashes                    << "  =  " << dashes << "  =  " << stripTrailingZeros(output) << '\n';
+        cout << "          " << stripTrailingZeros(secs) << " * 10^6       " << stripTrailingZeros(denom) << '\n';
     }
 }
 
