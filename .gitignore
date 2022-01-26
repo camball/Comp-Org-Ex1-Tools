@@ -1,0 +1,10 @@
+# Executables and Object Files
+CompOrgTools.x
+*.o
+a.out
+
+# Debug stuff 
+*.dSYM
+
+# Code Editor stuff
+.vscode
