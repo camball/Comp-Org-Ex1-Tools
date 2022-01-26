@@ -97,9 +97,9 @@ void CPU_Time::showUnits()
     cout << '\n';
 }
 
-void MFLOPSrating(){
+void MFLOPSrating() {
     uint64_t instCount = 0;
-    int secs = 0;
+    float secs = 0;
     float percentage = 0;
     
     double output = 0;
@@ -116,7 +116,7 @@ void MFLOPSrating(){
     int num = roundf(100-percentage) / 10; // this function deals with error, which is why it is programmed this way.
     int flops = (instCount * num) / 10;
     
-    uint64_t denom = secs * pow(10, 6);
+    double denom = secs * pow(10, 6);
     
     cout << std::fixed << std::setprecision(0);
     
